@@ -1,0 +1,14 @@
+{
+  "name": "Googol META1",
+  "image": "mcr.microsoft.com/devcontainers/java:1-8-bullseye",
+  "workspaceFolder": "/workspaces/META1",
+  "forwardPorts": [1099],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack"
+      ]
+    }
+  },
+  "postCreateCommand": "javac -cp 'lib/jsoup-1.21.2.jar:src' -d bin src/**/*.java"
+}

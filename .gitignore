@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+*.class
+*.exe
+*.o
+*.py[cod]
+__pycache__/
+.venv/
+node_modules/
+target/
+bin/
+*.log

@@ -1,0 +1,172 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Dark background */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1.5fr 10fr;
+    grid-template-rows: 50px auto;
+    grid-template-areas:
+    "sidebar path-bar path-bar"
+    "sidebar content right-section";
+    width: 95%;
+    height: 95%;
+    border: 2px solid white;
+    background-color: #181818;
+    overflow: hidden;
+}
+
+#bubble-chart {
+    text-align: center;
+}
+/* Sidebar */
+.sidebar {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-right: 2px solid white;
+}
+
+.sidebar .button {
+  text-decoration: none;
+  color: white;
+}
+
+.sidebar .title {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    display: block;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.button {
+    width: 120px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 2px solid white;
+    background-color: #282828;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 20px;
+}
+
+.button:hover {
+    background-color: #444444;
+}
+
+/* Content */
+.content {
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 5fr 1.2fr;
+    grid-template-rows: auto;
+    gap: 2px;
+}
+
+.path-bar {
+    grid-area: path-bar;
+    border-bottom: 2px solid white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.path-bar h2 {
+    font-size: 18px;
+    padding: 20px;
+}
+
+.path-bar input {
+    flex: 0.5;
+    border: none;
+    outline: none;
+    padding: 10px 10px;
+    background: rgb(209, 209, 209);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.path-bar button {
+    border: none;
+    outline: none;
+    padding: 10px 10px;
+    background: rgb(6, 179, 202);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#repository-analyser .main-section {
+    background-color: #202020;
+    border: 2px solid white;
+    margin: 0;
+    position: relative;
+    height: 100vh;
+}
+
+#repository-analyser .main-section h1,
+#repository-analyser .main-section h3 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+#repository-analyser .main-section h1 {
+    font-size: 56px;
+    top: 35%;
+    margin: 0;
+}
+
+#repository-analyser .main-section h3 {
+    font-size: 26px;
+    top: 45%;
+}
+
+#repository-analyser .content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+}
+
+.right-section {
+    border: 2px solid white;
+    margin: 2px;
+      background-color: black;
+  color: white;
+  padding: 20px;
+}
+
+.graph-options-title {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 20px;
+}

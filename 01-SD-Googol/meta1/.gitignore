@@ -1,0 +1,18 @@
+# VS Code settings
+.vscode/
+
+# Binários compilados
+bin/
+
+# Bibliotecas externas
+lib/
+
+# Ficheiros temporários
+*.log
+*.tmp
+*.bak
+*.swp
+*.class
+
+# Configurações locais
+config/

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repository analyser</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/table.css">
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body class="table-page">
+<div class="container">
+    <div class="sidebar">
+        <a href="index.html" class="title">PL1</a>
+        <a href="bubble.html" class="button">Bubble</a>
+        <a href="table.html" class="button">Table</a>
+        <a href="histogram.html" class="button">Histogram</a>
+        <a href="scatter.html" class="button">Scatter</a>
+    </div>
+    <div class="content-table">
+
+        <table id="file-table">
+            <thead>
+            <tr>
+                <th class="blue" onclick="sortTable('File Name')">File Name</th>
+                <th class="blue" id="sizeCol" onclick="sortTable('Size')">Size (Bytes)</th>
+                <th class="red" id="cycCompCol" onclick="sortTable('Cyclomatic Complexity')">Cyclomatic Complexity</th>
+                <th class="red" id="cogCompCol" onclick="sortTable('Cognitive Complexity')">Cognitive Complexity</th>
+                <th class="orange" id="locCol" onclick="sortTable('LoC')">LoC</th>
+                <th class="green" id="commitCol" onclick="sortTable('Number of Commits')">Number of Commits</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Rows will be dynamically added here -->
+            </tbody>
+            <tfoot>
+            <tr class="totals-row">
+                <td>Totals</td>
+                <td id="total-size">0</td>
+                <td id="total-cyclomatic">0</td>
+                <td id="total-cognitive">0</td>
+                <td id="total-loc">0</td>
+                <td id="total-commits">0</td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="right-section">
+        <h2 class="graph-options-title">Graph Options</h2>
+
+        <div class="graph-options">
+            <h2>Sort files by:</h2>
+
+            <h3>Cyclomatic Complexity</h3>
+            <label>
+                <input type="radio" name="sort" id="cyc-highest" value="high" onclick="sortFiles()"> Highest
+            </label>
+            <label>
+                <input type="radio" name="sort" id="cyc-lowest" value="low" onclick="sortFiles()"> Lowest
+            </label>
+
+            <h3>Cognitive Complexity</h3>
+            <label>
+                <input type="radio" name="sort" id="cog-highest" value="high" onclick="sortFiles()"> Highest
+            </label>
+            <label>
+                <input type="radio" name="sort" id="cog-lowest" value="low" onclick="sortFiles()"> Lowest
+            </label>
+
+            <h3>Number of Commits</h3>
+            <label>
+                <input type="radio" name="sort" id="commits-largest" value="high" onclick="sortFiles()"> Largest
+            </label>
+            <label>
+                <input type="radio" name="sort" id="commits-smallest" value="low" onclick="sortFiles()"> Smallest
+            </label>
+
+            <h3>Lines of Code</h3>
+            <label>
+                <input type="radio" name="sort" id="loc-largest" value="high" onclick="sortFiles()"> Largest
+            </label>
+            <label>
+                <input type="radio" name="sort" id="loc-smallest" value="low" onclick="sortFiles()"> Smallest
+            </label>
+            <button class="button" onclick="fetchAndDisplayFileData()">Refresh</button>
+        </div>
+    </div>
+    <div class="path-bar">
+        <h2>Tables</h2>
+    </div>
+</div>
+<script src="js/table.js"></script>
+</body>
+</html>

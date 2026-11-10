@@ -1,0 +1,159 @@
+.tooltip {
+    font-size: 12px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    pointer-events: none;
+    display: none;
+    z-index: 100;
+    color: #000;
+    padding: 10px;
+}
+
+#histogram-chart {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 4500vw;
+    height: auto;
+    padding: 20px;
+    margin-top: 150px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+#histogram-chart svg {
+    min-width: 100%;
+    width: auto;
+}
+
+#histograms .main-section {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+#histograms #histograms .right-section {
+    height: 90vh;
+    position: fixed;
+    top: 5%;
+    right: 0;
+    z-index: 10;
+    overflow-y: auto;
+    background-color: #000;
+    color: white;
+    border-left: 2px solid white;
+    padding: 20px;
+    margin: 2px;
+}
+
+/*-----------------------------------------------------------------------------------------*/
+
+.bar {
+    fill: #fff;
+    transition: fill 0.3s, height 0.3s;
+}
+
+.bar:hover {
+    fill: #0078d7;
+    cursor: pointer;
+}
+
+.right-section h3 {
+    font-size: 16px;
+}
+
+input[type="radio"] {
+    accent-color: white;
+    width: 18px;
+    height: 18px;
+}
+
+/*-----------------------------------------------------------------------------------------*/
+
+.graph-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+}
+
+.graph-options {
+    background-color: #000;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+}
+
+.graph-options-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #f0f0f0;
+}
+
+.graph-options label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.graph-options input[type="radio"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.graph-options input[type="radio"]:checked {
+    background-color: #ffffff;
+    border-color: #f1f1f1;
+}
+
+.graph-options input[type="radio"]:hover {
+    border-color: #717171;
+}
+
+.graph-options label:hover {
+    color: #7a7a7a;
+}
+
+/*-----------------------------------------------------------------------------------------*/
+
+#compare-variables-section {
+    background-color: #000;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+#variables-selection {
+    margin-top: 30px;
+}
+
+#variable-count,
+#variables-selection select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    background-color: #333;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+
+#variables-selection select:focus {
+    border-color: #0078d7;
+    background-color: #444;
+}
+

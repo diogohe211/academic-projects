@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repository analyser</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/scatter.css">
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <a href="index.html" class="title">PL1</a>
+        <a href="bubble.html" class="button">Bubble</a>
+        <a href="table.html" class="button">Table</a>
+        <a href="histogram.html" class="button">Histogram</a>
+        <a href="scatter.html" class="button">Scatter</a>
+    </div>
+
+    <div class="content">
+        <div id="bubble-chart" class="main-section"></div>
+
+        <div class="right-section">
+            <h2 class="graph-options-title">Graph Options</h2>
+            <div class="graph-options">
+                <h3>Complexity:</h3>
+                <label>
+                    <input type="radio" name="complexity" id="cycloComp" value="cyclomatic"> Cyclomatic
+                </label>
+                <label>
+                    <input type="radio" name="complexityCog" id="cogComp" value="cognitive"> Cognitive
+                </label>
+            </div>
+
+            <div class="graph-options">
+                <h3 class="toggle-header first-option" onclick="toggleOptions('xAxis-options')">X-Axis</h3>
+                <div id="xAxis-options" class="options hidden">
+                    <label>
+                        <input type="radio" name="xAxis" id="xNloc" value="nloc"> NLOC
+                    </label>
+                    <label>
+                        <input type="radio" name="xAxis" id="xComplexity" value="complexity"> Complexity
+                    </label>
+                    <label>
+                        <input type="radio" name="xAxis" id="xFilesize" value="filesize"> Filesize
+                    </label>
+                </div>
+            </div>
+
+            <div class="graph-options">
+                <h3 class="toggle-header second-option" onclick="toggleOptions('yAxis-options')">Y-Axis</h3>
+                <div id="yAxis-options" class="options hidden">
+                    <label>
+                        <input type="radio" name="yAxis" id="yNloc" value="nloc"> NLOC
+                    </label>
+                    <label>
+                        <input type="radio" name="yAxis" id="yComplexity" value="complexity"> Complexity
+                    </label>
+                    <label>
+                        <input type="radio" name="yAxis" id="yFilesize" value="filesize"> Filesize
+                    </label>
+                </div>
+            </div>
+            <div class="graph-options">
+                <button id="toggleTrendline" class="button">Show Trendline</button>
+                <button id="toggleGraph" class="button">Go to overview Graph</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="path-bar">
+        <h2>Scatter   |   Path:</h2>
+        <input type="text" id="path-box" placeholder="./">
+        <button onclick="drawScatterOverTime()">Go</button>
+    </div>
+    <div id="complexity-history-box" class="history-box"></div>
+</div>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="js/scatter.js"></script>
+</body>
+</html>

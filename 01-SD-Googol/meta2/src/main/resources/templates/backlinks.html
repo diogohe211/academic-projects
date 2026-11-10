@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Backlinks</title>
+</head>
+<body>
+<h1>Backlinks para: <span th:text="${url}"></span></h1>
+
+<a th:href="@{/}">Voltar à pesquisa</a>
+<br><br>
+
+<div th:if="${#lists.isEmpty(backlinks)}">
+    <p>Não foram encontrados backlinks para este URL.</p>
+</div>
+
+<ul th:if="${!#lists.isEmpty(backlinks)}">
+    <li th:each="link : ${backlinks}">
+        <a th:href="${link}" th:text="${link}"></a>
+    </li>
+</ul>
+
+</body>
+</html>

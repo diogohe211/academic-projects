@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados - Googol</title>
+    <style>
+        body {
+            background-color: #181818;
+            color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        a { color: #4ea3ff; }
+
+        .container {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            padding: 20px;
+        }
+
+        .results { flex: 3; }
+
+        .stats {
+            flex: 1;
+            background-color: #222;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        h1, h2 { margin-top: 0; }
+
+        li { margin-bottom: 10px; }
+
+        small { color: #aaa; }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #333;
+            margin: 10px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid #444;
+            padding: 6px 8px;
+            vertical-align: top;
+        }
+
+        th { background-color: #333; }
+
+        .pagination a { margin-right: 10px; }
+
+        .muted { color: #aaa; font-size: 0.9rem; }
+    </style>
+
+    <!-- WebSocket libs -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2/dist/stomp.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <!-- COLUNA ESQUERDA: RESULTADOS -->
+    <div class="results">
+        <h1>Resultados para "<span th:text="${query}"></span>"</h1>
+
+        <p>
+            <a th:href="@{/}">⟵ Voltar à pesquisa</a>
+        </p>
+
+        <div th:if="${result != null}">
+            <p th:text="'Total de resultados: ' + ${result.total}"></p>
+
+            <div th:if="${#lists.isEmpty(result.items)}">
+                <p>Nenhum resultado encontrado.</p>
+            </div>
+
+            <ul th:if="${!#lists.isEmpty(result.items)}">
+                <li th:each="item : ${result.items}">
+                    <a th:href="${item.url}" th:text="${item.title}" target="_blank"></a><br>
+                    <small th:text="${item.url}"></small><br>
+                    <p th:text="${item.snippet}"></p>
+
+                    <!-- link para os backlinks -->
+                    <a th:href="@{/backlinks(url=${item.url})}">Ver backlinks</a>
+
+                    <hr>
+                </li>
+            </ul>
+
+            <div class="pagination">
+                <a th:if="${page > 0}"
+                   th:href="@{/search(q=${query}, page=${page - 1})}">Anterior</a>
+
+                <a th:href="@{/search(q=${query}, page=${page + 1})}">Seguinte</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- COLUNA DIREITA: STATS -->
+    <div class="stats">
+        <h2>Estatísticas</h2>
+
+        <!-- IMPORTANTE: tabela existe SEMPRE -->
+        <table id="stats-table">
+            <thead>
+            <tr>
+                <th>Métrica</th>
+                <th>Valor</th>
+            </tr>
+            </thead>
+
+            <tbody id="stats-body">
+            <!-- render inicial se o controller enviar stats -->
+            <th:block th:if="${stats != null}">
+                <tr th:each="entry : ${stats.entrySet()}">
+                    <td th:text="${entry.key}"></td>
+                    <td th:text="${entry.value}"></td>
+                </tr>
+            </th:block>
+
+            <!-- placeholder inicial (quando ainda não chegou nada por websocket) -->
+            <tr id="stats-placeholder" th:if="${stats == null}">
+                <td colspan="2" class="muted">A aguardar estatísticas em tempo real…</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p style="margin-top:10px;">
+            <a th:href="@{/stats}">Ver detalhes</a>
+        </p>
+    </div>
+</div>
+
+<!-- JS para consumir WebSocket e atualizar stats -->
+<script th:inline="javascript">
+    (function () {
+        // Endpoint SockJS (Thymeleaf-safe)
+        var socket = new SockJS(/*[[@{/ws}]]*/ '/ws');
+        var stompClient = Stomp.over(socket);
+
+        // -logs stomp
+        stompClient.debug = null;
+
+        stompClient.connect({}, function () {
+            stompClient.subscribe('/topic/stats', function (message) {
+                try {
+                    var stats = JSON.parse(message.body);
+                    updateStatsTable(stats);
+                } catch (e) {
+                    console.log("Erro a fazer parse das stats:", e);
+                }
+            });
+        }, function (error) {
+            console.log('Erro na ligação WebSocket:', error);
+        });
+
+        function updateStatsTable(stats) {
+            var tbody = document.getElementById('stats-body');
+            if (!tbody) return;
+
+            // remove placeholder, se existir
+            var ph = document.getElementById('stats-placeholder');
+            if (ph) ph.remove();
+
+            // limpa e recria
+            tbody.innerHTML = '';
+
+            Object.keys(stats).forEach(function (key) {
+                var tr = document.createElement('tr');
+                var tdKey = document.createElement('td');
+                var tdVal = document.createElement('td');
+
+                tdKey.textContent = key;
+
+                var val = stats[key];
+                if (typeof val === "object") {
+                    tdVal.textContent = JSON.stringify(val);
+                } else {
+                    tdVal.textContent = String(val);
+                }
+
+                tr.appendChild(tdKey);
+                tr.appendChild(tdVal);
+                tbody.appendChild(tr);
+            });
+
+            // se vier vazio volta a meter placeholder
+            if (Object.keys(stats).length === 0) {
+                var tr = document.createElement('tr');
+                tr.id = 'stats-placeholder';
+                var td = document.createElement('td');
+                td.colSpan = 2;
+                td.className = 'muted';
+                td.textContent = 'A aguardar estatísticas em tempo real…';
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+            }
+        }
+    })();
+</script>
+
+</body>
+</html>

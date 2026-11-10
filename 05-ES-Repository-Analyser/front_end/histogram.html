@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repository Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/histogram.css">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body id="histograms">
+<div class="container">
+    <!-- Sidebar com os links -->
+    <div class="sidebar">
+        <a href="index.html" class="title">PL1</a>
+        <a href="bubble.html" class="button">Bubble</a>
+        <a href="table.html" class="button">Table</a>
+        <a href="histogram.html" class="button">Histogram</a>
+        <a href="scatter.html" class="button">Scatter</a>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="content">
+        <div class="main-section">
+            <!-- Contêiner para o histograma -->
+            <div id="histogram-chart">
+                <!-- O conteúdo do histograma será inserido aqui pelo script -->
+            </div>
+        </div>
+
+        <!-- Opções para configuração do gráfico -->
+        <div class="right-section">
+            <h2 class="graph-options-title">Graph Options</h2>
+            <div class="graph-options">
+                <form>
+                    <label>
+                        <input type="radio" name="graph-option" value="changes"> Changes
+                    </label><br>
+                    <label>
+                        <input type="radio" name="graph-option" value="lines-of-code"> Lines of Code
+                    </label><br>
+                    <label>
+                        <input type="radio" name="graph-option" value="complexity"> Complexity
+                    </label><br>
+                    <label>
+                        <input type="radio" name="graph-option" value="size"> Size
+                    </label><br>
+                    <label>
+                        <input type="radio" name="graph-option" value="compare-variables"> Compare Variables
+                    </label>
+                </form>
+
+                <div id="compare-variables-section" class="hidden">
+                    <div id="variables-selection">
+                        <!-- Apenas as duas variáveis serão apresentadas -->
+                        <label for="variable-1">Variable 1:</label>
+                        <select id="variable-1">
+                            <option value="lines-of-code">Lines of Code</option>
+                            <option value="changes">Changes</option>
+                            <option value="complexity">Complexity</option>
+                            <option value="size">Size</option>
+                        </select>
+
+                        <label for="variable-2">Variable 2:</label>
+                        <select id="variable-2">
+                            <option value="lines-of-code">Lines of Code</option>
+                            <option value="changes">Changes</option>
+                            <option value="complexity">Complexity</option>
+                            <option value="size">Size</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de caminho (input para caminho do diretório) -->
+    <div class="path-bar">
+        <h2>Histogram</h2>
+    </div>
+</div>
+
+<script src="js/histogram.js"></script>
+</body>
+</html>

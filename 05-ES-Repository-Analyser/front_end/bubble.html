@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repository analyser</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/bubble.css">
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <a href="index.html" class="title">PL1</a>
+        <a href="bubble.html" class="button">Bubble</a>
+        <a href="table.html" class="button">Table</a>
+        <a href="histogram.html" class="button">Histogram</a>
+        <a href="scatter.html" class="button">Scatter</a>
+    </div>
+    <div class="content">
+        <div id="bubble-chart" class="main-section">
+            <div id="no-data-message" class="no-data-message" style="display: none;">
+                Sem dados disponíveis para esta característica
+            </div>
+            <div id="hidden-files-counter" class="hidden-files-counter" style="display: none;">
+                <span id="hidden-count">0</span> arquivos ocultos sem dados
+            </div>
+        </div>
+        <div class="right-section">
+            <h2 class="graph-options-title">Graph Options</h2>
+
+            <div class="graph-options">
+                <div class="characteristic-buttons">
+                    <button class="char-button active" data-char="filesize">File Size</button>
+                    <button class="char-button" data-char="nloc">NLOC</button>
+                    <button class="char-button" data-char="cycComp">Cyclomatic Complexity</button>
+                    <button class="char-button" data-char="cogComp">Cognitive Complexity</button>
+                </div>
+                <div class="zoom-info">
+                    <p>Use the scroll to zoom</p>
+                </div>
+                <a class="button" id="back-button">Back</a>
+            </div>
+
+            <!-- Legend Section -->
+            <div class="folder-info">
+                <h2>Folder Information</h2>
+                <p><strong>Folder Name:</strong> <span id="folder-name">Root</span></p>
+                <p><strong>Total Size:</strong> <span id="folder-size">N/A</span></p>
+                <p><strong>Complexity:</strong> <span id="folder-complexity">N/A</span></p>
+                <p><strong>Contributors:</strong> <span id="folder-contributor">N/A</span></p>
+            </div>
+
+        </div>
+    </div>
+    <div class="path-bar">
+        <h2>Bubble representation</h2>
+    </div>
+</div>
+<script src="js/bubble.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Googol Web</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a0330;
+            color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 700px;
+            padding: 30px 40px 40px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: 40px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 8px;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .search-bar {
+            margin-top: 8px;
+            background-color: #2a2a2a;
+            border-radius: 999px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #b0b0b0;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .search-icon::after {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 8px;
+            background-color: #b0b0b0;
+            border-radius: 2px;
+            right: -4px;
+            bottom: -2px;
+            transform: rotate(45deg);
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: #f5f5f5;
+            font-size: 16px;
+        }
+
+        .search-input::placeholder {
+            color: #888;
+        }
+
+        .search-button {
+            border: none;
+            outline: none;
+            background-color: #3b82f6;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .search-button:hover {
+            background-color: #2563eb;
+        }
+
+        .message {
+            margin-top: 10px;
+            color: #a5ffa5;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* ---- EXTRAS ---- */
+        .extras {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .extra-button {
+            text-decoration: none;
+            background-color: #2a2a2a;
+            color: #f5f5f5;
+            padding: 12px 22px;
+            border-radius: 999px;
+            font-size: 15px;
+            border: 1px solid #444;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .extra-button:hover {
+            background-color: #3b82f6;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+    <div class="card">
+        <h1>Googol Web</h1>
+
+        <!-- PESQUISA -->
+        <h2>Pesquisa</h2>
+        <form th:action="@{/search}" method="get">
+            <div class="search-bar">
+                <div class="search-icon"></div>
+                <input class="search-input"
+                       type="text"
+                       name="q"
+                       placeholder="Escreve aqui os termos de pesquisa">
+                <button class="search-button" type="submit">Pesquisar</button>
+            </div>
+        </form>
+
+        <!-- SUBMETER URL -->
+        <h2>Submeter novo URL</h2>
+        <form th:action="@{/submit-url}" method="post">
+            <div class="search-bar">
+                <div class="search-icon"></div>
+                <input class="search-input"
+                       type="text"
+                       name="url"
+                       placeholder="https://example.com">
+                <button class="search-button" type="submit">Submeter</button>
+            </div>
+        </form>
+
+        <!-- Mensagem flash -->
+        <div class="message" th:if="${message != null}" th:text="${message}"></div>
+
+        <!-- EXTRAS -->
+        <h2>Extras</h2>
+        <div class="extras">
+            <a class="extra-button" th:href="@{/hn}">📰 Hacker News</a>
+            <a class="extra-button" th:href="@{/ai}">🤖 Modo IA</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

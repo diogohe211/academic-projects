@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Estatísticas</title>
+</head>
+<body>
+<h1>Estatísticas do sistema</h1>
+
+<a th:href="@{/}">Voltar à pesquisa</a>
+<br><br>
+
+<table border="1">
+    <tr>
+        <th>Métrica</th>
+        <th>Valor</th>
+    </tr>
+    <tr th:each="entry : ${stats.entrySet()}">
+        <td th:text="${entry.key}"></td>
+        <td th:text="${entry.value}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
