@@ -7,20 +7,22 @@ This repository contains academic projects developed throughout my degree, cover
 
 ## Projects
 
-- [01-SD-Googol](01-SD-Googol/README.md)
-- [02-COMP-JUC](02-COMP-JUC/README.md)
-- [03-SO-DEIChain](03-SO-DEIChain/README.md)
-- [04-FIA-Lunar-Lander](04-FIA-Lunar-Lander/README.md)
-- [05-ES-Repository-Analyser](05-ES-Repository-Analyser/README.md)
-- [06-AED-Algorithms](06-AED-Algorithms/README.md)
-- [07-ATD-Spoken-Digits](07-ATD-Spoken-Digits/README.md)
-- [08-MULT-JPEG-and-Audio](08-MULT-JPEG-and-Audio/README.md)
-- [09-BD-Auctions](09-BD-Auctions/README.md)
-- [10-RC-Messaging-System](10-RC-Messaging-System/README.md)
-- [11-TI-Image-Codec](11-TI-Image-Codec/README.md)
-- [12-POO-Research-Management](12-POO-Research-Management/README.md)
-- [13-EA-Algorithmic-Strategies](13-EA-Algorithmic-Strategies/README.md)
-- [14-CG-Computer-Graphics](14-CG-Computer-Graphics/README.md)
+Each project is listed under its corresponding university course, with links to the source code and documentation.
+
+    -Distributed Systems (Sistemas Distribuídos — SD) — Googol
+    -Compilers (Compiladores — COMP) — JUC Compiler
+    -Operating Systems (Sistemas Operativos — SO) — DEIChain
+    -Fundamentals of Artificial Intelligence (Fundamentos de Inteligência Artificial — FIA) — Lunar Lander
+    -Software Engineering (Engenharia de Software — ES) — Repository Analyser
+    -Algorithms and Data Structures (Algoritmos e Estruturas de Dados — AED) — Algorithms
+    -Data Analysis and Transformation (Análise e Transformação de Dados — ATD) — Spoken Digits
+    -Multimedia (Multimédia — MULT) — JPEG and Audio
+    -Databases (Bases de Dados — BD) — Auctions
+    -Communication Networks (Redes de Comunicação — RC) — Messaging System
+    -Information Theory (Teoria da Informação — TI) — Image Codec
+    -Object-Oriented Programming (Programação Orientada aos Objetos — POO) — Research Management
+    -Algorithmic Strategies (Estratégias Algorítmicas — EA) — Algorithmic Strategies
+    -Computer Graphics (Computação Gráfica — CG) — Computer Graphics
 
 ## Documentation
 
